@@ -277,7 +277,7 @@ export default function Products() {
                             GHS {product.price.toFixed(2)}
                           </span>
                           <button className="rounded-md bg-green-700 px-4 py-2 text-sm text-white transition hover:bg-green-800">
-                            Add to Cart
+                            Add to Cart 
                           </button>
                         </div>
                       </div>
