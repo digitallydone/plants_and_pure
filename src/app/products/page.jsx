@@ -17,7 +17,7 @@ export default function Products() {
       description:
         "Premium quality turmeric with high curcumin content for cooking and wellness.",
       image: "/api/placeholder/300/300",
-      price: 9.99,
+      price: 99.99,
       category: "Spices",
       bestSeller: true,
       newArrival: false,
@@ -28,7 +28,7 @@ export default function Products() {
       description:
         "100% pure lavender oil to promote relaxation and peaceful sleep.",
       image: "/api/placeholder/300/300",
-      price: 14.99,
+      price: 140.99,
       category: "Essential Oils",
       bestSeller: true,
       newArrival: false,
@@ -39,7 +39,7 @@ export default function Products() {
       description:
         "Soothing herbal tea blend with organic chamomile, honey, and citrus notes.",
       image: "/api/placeholder/300/300",
-      price: 11.99,
+      price: 110.99,
       category: "Herbs",
       bestSeller: false,
       newArrival: true,
@@ -50,7 +50,7 @@ export default function Products() {
       description:
         "Perfect gift featuring peppermint tea, essential oil, and dried herbs.",
       image: "/api/placeholder/300/300",
-      price: 24.99,
+      price: 45.99,
       category: "Gift Sets",
       bestSeller: false,
       newArrival: false,
@@ -61,7 +61,7 @@ export default function Products() {
       description:
         "Ceylon cinnamon sticks with a sweet, delicate flavor for teas and desserts.",
       image: "/api/placeholder/300/300",
-      price: 7.99,
+      price: 79.99,
       category: "Spices",
       bestSeller: false,
       newArrival: true,
@@ -72,7 +72,7 @@ export default function Products() {
       description:
         "Powerful antimicrobial oil for skin care and home cleaning applications.",
       image: "/api/placeholder/300/300",
-      price: 12.99,
+      price: 119.99,
       category: "Essential Oils",
       bestSeller: false,
       newArrival: false,
@@ -83,7 +83,7 @@ export default function Products() {
       description:
         "Aromatic rosemary leaves, perfect for cooking Mediterranean dishes.",
       image: "/api/placeholder/300/300",
-      price: 6.99,
+      price: 89.99,
       category: "Herbs",
       bestSeller: false,
       newArrival: false,
@@ -94,7 +94,7 @@ export default function Products() {
       description:
         "Curated collection of calming teas, oils, and bath products for ultimate relaxation.",
       image: "/api/placeholder/300/300",
-      price: 34.99,
+      price: 89.99,
       category: "Gift Sets",
       bestSeller: true,
       newArrival: false,
@@ -105,7 +105,7 @@ export default function Products() {
       description:
         "Warming, aromatic ginger powder to enhance both sweet and savory dishes.",
       image: "/api/placeholder/300/300",
-      price: 8.99,
+      price: 80.99,
       category: "Spices",
       bestSeller: false,
       newArrival: false,
@@ -116,7 +116,7 @@ export default function Products() {
       description:
         "Dried lemon balm leaves with a bright citrus flavor, ideal for teas and infusions.",
       image: "/api/placeholder/300/300",
-      price: 7.49,
+      price: 75.49,
       category: "Herbs",
       bestSeller: false,
       newArrival: true,
@@ -127,7 +127,7 @@ export default function Products() {
       description:
         "Refreshing eucalyptus oil to clear the mind and support respiratory health.",
       image: "/api/placeholder/300/300",
-      price: 13.99,
+      price: 130.99,
       category: "Essential Oils",
       bestSeller: false,
       newArrival: false,
@@ -138,7 +138,7 @@ export default function Products() {
       description:
         "Essential cooking spices including paprika, oregano, basil, and thyme.",
       image: "/api/placeholder/300/300",
-      price: 29.99,
+      price: 69.99,
       category: "Gift Sets",
       bestSeller: false,
       newArrival: true,
@@ -274,7 +274,7 @@ export default function Products() {
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-lg font-medium text-gray-800">
-                            £{product.price.toFixed(2)}
+                            GHS{product.price.toFixed(2)}
                           </span>
                           <button className="rounded-md bg-green-700 px-4 py-2 text-sm text-white transition hover:bg-green-800">
                             Add to Cart
