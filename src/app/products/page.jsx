@@ -270,6 +270,7 @@ export default function Products() {
                           {product.name}
                         </h3>
                         <p className="mb-4 text-sm text-gray-600">
+                          
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between">
