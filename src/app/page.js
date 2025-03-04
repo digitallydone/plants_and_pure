@@ -45,7 +45,7 @@ export default function Home() {
                   Explore Products
                 </Link>
                 <Link
-                  href="/about"
+                  href="/about-us"
                   className="rounded-md border-2 border-white bg-transparent px-6 py-3 text-white transition hover:bg-white hover:text-green-700"
                 >
                   Our Story
