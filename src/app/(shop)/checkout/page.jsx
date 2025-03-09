@@ -1,8 +1,8 @@
 "use client";
-import { useCart } from "@/context/CartContext";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import PaystackPop from "@paystack/inline-js";
+import { useCart } from "@/utils/CartContext";
 
 const CheckoutPage = () => {
   const { cart, clearCart } = useCart();
