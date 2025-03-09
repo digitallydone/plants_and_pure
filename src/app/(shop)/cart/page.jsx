@@ -1,8 +1,9 @@
 "use client";
-import { useCart } from "@/context/CartContext";
+
+import { useCart } from "@/utils/CartContext";
 
 const CartPage = () => {
-  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart()
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
