@@ -1,14 +1,26 @@
 import prisma from "@/lib/prisma";
 
 const ManageOrders = async () => {
+  // const orders = await prisma.order.findMany({
+  //   include: { products: true, user: true },
+  // });
+
   const orders = await prisma.order.findMany({
-    include: { products: true, user: true },
+    include: {
+      user: true,
+      orderItems: {
+        include: {
+          product: true,
+        },
+      },
+    },
   });
+  // console.log(orders);
 
   return (
     <div>
-      <h1 className="text-2xl mb-4">Manage Orders</h1>
-      <table className="w-full bg-white shadow rounded">
+      <h1 className="mb-4 text-2xl">Manage Orders</h1>
+      <table className="w-full rounded bg-white shadow">
         <thead>
           <tr>
             <th className="border p-2">Order ID</th>

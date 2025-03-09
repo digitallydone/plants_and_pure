@@ -8,44 +8,55 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
   name      String
-  email     String     @unique
+  email     String      @unique
   password  String?
-  role      String     @default("user")
+  role      String      @default("user")
   orders    Order[]
   cartItems CartItem[]
 }
 
 model Product {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   description String
   image       String
   category    String
   stock       Int
   price       Float
-  bestSeller  Boolean    @default(false)
-  newArrival  Boolean    @default(false)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  cartItems   CartItem[] // Back-reference to CartItem
+  bestSeller  Boolean       @default(false)
+  newArrival  Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  cartItems   CartItem[]    // Back-reference to CartItem
+  orderItems  OrderItem[]   // Back-reference to OrderItem
 }
 
 model CartItem {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String  @db.ObjectId    // Fixed: Added @db.ObjectId
-  productId String  @db.ObjectId    // Fixed: Added @db.ObjectId
-  quantity  Int     @default(1)
-  user      User    @relation(fields: [userId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  productId String   @db.ObjectId
+  quantity  Int      @default(1)
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 }
 
 model Order {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String   @db.ObjectId    // Fixed: Added @db.ObjectId
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String      @db.ObjectId
   totalAmount Float
-  status      String   @default("pending")
-  createdAt   DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
+  status      String      @default("pending")
+  createdAt   DateTime    @default(now())
+  user        User        @relation(fields: [userId], references: [id])
+  orderItems  OrderItem[] // Link to OrderItem
+}
+
+model OrderItem {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String   @db.ObjectId
+  productId String   @db.ObjectId
+  quantity  Int      @default(1)
+  order     Order    @relation(fields: [orderId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
 }

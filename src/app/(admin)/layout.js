@@ -12,7 +12,6 @@ export const metadata = {
               <li><a href="/admin" className="hover:text-green-300">Dashboard</a></li>
               <li><a href="/admin/products" className="hover:text-green-300">Manage Products</a></li>
               <li><a href="/admin/orders" className="hover:text-green-300">Manage Orders</a></li>
-              <li><a href="/admin/exchange-rate" className="hover:text-green-300">Exchange Rate</a></li>
             </ul>
           </nav>
         </aside>
