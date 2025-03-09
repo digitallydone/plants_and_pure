@@ -1,9 +1,15 @@
 "use client";
+import { FaBars } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
+import UserNavProfile from "./UserNavProfile";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
+
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,7 +25,6 @@ export default function Navbar() {
     { name: "About us", link: "/about-us" },
     { name: "Services", link: "/services" },
     { name: "our Work", link: "/our-work" },
-    // { name: "Contact us", link: "/contact" },
   ];
 
   const menuList = (
@@ -27,18 +32,36 @@ export default function Navbar() {
       {menuItems.map((item, index) => (
         <Link
           key={`${item}-${index}`}
-          className="font-semibold capitalize hover:text-gray-400"
+          className="transition hover:text-green-700"
           href={item.link}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           {item.name}
         </Link>
       ))}
+
+      {!session ? (
+        <>
+          <Button
+            onPress={() => setIsMenuOpen(!isMenuOpen)}
+            color="secondary"
+            variant="ghost"
+            size="sm"
+            as={Link}
+            href="/login"
+          >
+            Login
+          </Button>
+        </>
+      ) : (
+        <>
+          <UserNavProfile />
+        </>
+      )}
     </>
   );
 
   useEffect(() => {
-    // Close menu when window is resized to desktop size
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setIsMenuOpen(false);
@@ -61,39 +84,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block">
-            <ul className="flex space-x-8">
-              <li>
-                <Link href="/" className="transition hover:text-green-700">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about-us" className="transition hover:text-green-700">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="transition hover:text-green-700"
-                >
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="transition hover:text-green-700">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="transition hover:text-green-700"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
+            <div className="flex items-center justify-center space-x-8">{menuList} </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -125,33 +116,7 @@ export default function Navbar() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="bg-white md:hidden">
-            <ul className="flex flex-col px-4 py-2">
-              <li className="py-2">
-                <Link href="/" className="block hover:text-green-700">
-                  Home
-                </Link>
-              </li>
-              <li className="py-2">
-                <Link href="/about-us" className="block hover:text-green-700">
-                  About Us
-                </Link>
-              </li>
-              <li className="py-2">
-                <Link href="/products" className="block hover:text-green-700">
-                  Products
-                </Link>
-              </li>
-              <li className="py-2">
-                <Link href="/blog" className="block hover:text-green-700">
-                  Blog
-                </Link>
-              </li>
-              <li className="py-2">
-                <Link href="/contact" className="block hover:text-green-700">
-                  Contact
-                </Link>
-              </li>
-            </ul>
+            <div className="flex flex-col items-center justify-center space-y-4 p-4">{menuList} </div>
           </div>
         )}
       </header>

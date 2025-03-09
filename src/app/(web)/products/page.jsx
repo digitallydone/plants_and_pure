@@ -1,7 +1,7 @@
 "use client";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Products() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function Products() {
 
   const categories = ["All", "Spices", "Herbs", "Essential Oils", "Gift Sets"];
 
-  const products = [
+  const demoProducts = [
     {
       id: 1,
       name: "Organic Turmeric Powder",
@@ -145,6 +145,8 @@ export default function Products() {
     },
   ];
 
+  const [products, setProducts] = useState(demoProducts || []);
+
   // Filter products by category
   const filteredProducts =
     activeCategory === "All"
@@ -168,6 +170,19 @@ export default function Products() {
       return 0;
     }
   });
+
+  useEffect(() => {
+    try {
+      const fetchProducts = async () => {
+        const res = await fetch("/api/products");
+        const data = await res.json();
+        setProducts(data);
+      };
+      fetchProducts();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -270,15 +285,18 @@ export default function Products() {
                           {product.name}
                         </h3>
                         <p className="mb-4 text-sm text-gray-600">
-                          
                           {product.description}
                         </p>
                         <div className="flex items-center justify-between">
                           <span className="text-lg font-medium text-gray-800">
                             GHS {product.price.toFixed(2)}
                           </span>
-                          <button className="rounded-md bg-green-700 px-4 py-2 text-sm text-white transition hover:bg-green-800">
-                            Add to Cart 
+
+                          <button
+                            // onClick={() => addToCart(product)}
+                            className="rounded-md bg-green-700 px-4 py-2 text-sm text-white transition hover:bg-green-800"
+                          >
+                            Add to Cart
                           </button>
                         </div>
                       </div>

@@ -14,36 +14,43 @@ export default function RegisterPage() {
     password: "",
   };
   const [form, setForm] = useState(initial);
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await registerUser(
-      form.name,
-      form.email,
-      form.password,
-      form.role
-    );
-    if (result.success) {
-      setMessage(result.success);
-      setForm(initial);
-      router.push("login");
+    setError("");
+    setSuccess("");
+
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setSuccess("Registration successful! Redirecting to login...");
+      setTimeout(() => router.push("/login"), 2000);
     } else {
-      setMessage(result.error);
+      setError(data.error || "Something went wrong.");
     }
   };
-
+ 
   return (
-    <div className="bg-background  min-h-screen py-6 sm:py-8 lg:py-12">
+    <div className="min-h-screen bg-background py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <h2 className="mb-4 text-center text-2xl font-bold text-copy md:mb-8 lg:text-3xl">
           Register
         </h2>
-        {message && <p className="text-red-500 text-center">{message}</p>}
+        {error && <p className="text-center text-red-500">{error}</p>}
+        {success && <p className="text-center text-green-500">{success}</p>}
 
         <form
           onSubmit={handleSubmit}
@@ -137,3 +144,87 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+// "use client";
+
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import Link from "next/link";
+
+// export default function RegisterPage() {
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [error, setError] = useState("");
+//   const [success, setSuccess] = useState("");
+//   const router = useRouter();
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError("");
+//     setSuccess("");
+
+//     const res = await fetch("/api/auth/register", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ name, email, password }),
+//     });
+
+//     const data = await res.json();
+
+//     if (res.ok) {
+//       setSuccess("Registration successful! Redirecting to login...");
+//       setTimeout(() => router.push("/login"), 2000);
+//     } else {
+//       setError(data.error || "Something went wrong.");
+//     }
+//   };
+
+//   return (
+//     <>
+
+//       <div className="flex items-center justify-center min-h-screen bg-gray-100">
+//       <form
+//         onSubmit={handleSubmit}
+//         className="p-6 bg-white rounded shadow-md w-80 space-y-4"
+//       >
+//         <h2 className="text-xl font-bold text-center">Sign Up</h2>
+//         {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+//         {success && (
+//           <p className="text-green-500 text-sm text-center">{success}</p>
+//         )}
+//         <input
+//           type="text"
+//           placeholder="Name"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//           className="w-full p-2 border rounded focus:outline-none"
+//           required
+//         />
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           className="w-full p-2 border rounded focus:outline-none"
+//           required
+//         />
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           className="w-full p-2 border rounded focus:outline-none"
+//           required
+//         />
+//         <button
+//           type="submit"
+//           className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+//         >
+//           Sign Up
+//         </button>
+//       </form>
+//     </div>
+//     </>
+//   );
+// }

@@ -1,48 +1,65 @@
 "use client";
-import React, { createContext, useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { createContext, useContext, useState } from "react";
 
-const Context = createContext();
+const CartContext = createContext();
 
-const ContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const useCart = () => useContext(CartContext);
 
-  const [isClient, setIsClient] = useState(false);
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (isClient) {
-      const storedUser = Cookies.get("u-user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
+  const addToCart = (product) => {
+    setCart((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
       }
-    }
-  }, [isClient]);
-
-  useEffect(() => {
-    if (isClient) {
-      Cookies.set("u-user", JSON.stringify(user), { expires: 7 });
-    }
-  }, [user, isClient]);
-
-  const logout = () => {
-    setUser(null);
+      return [...prev, { ...product, quantity: 1 }];
+    });
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prev) => prev.filter((item) => item.id !== productId));
+  };
+
+  const increaseQuantity = (productId) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (productId) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === productId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const clearCart = () => setCart([]);
+
   return (
-    <Context.Provider
+    <CartContext.Provider
       value={{
-        user,
-        setUser,
-        logout,
+        cart,
+        addToCart,
+        removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
+        clearCart,
       }}
     >
       {children}
-    </Context.Provider>
+    </CartContext.Provider>
   );
 };
-
-export { Context, ContextProvider };

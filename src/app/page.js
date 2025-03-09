@@ -476,7 +476,7 @@ export default function Home() {
         </section>
 
         {/* Blog Preview */}
-        <section className="bg-gray-50 py-16">
+        {/* <section className="bg-gray-50 py-16">
           <div className="container mx-auto px-4">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl text-gray-800">
@@ -580,7 +580,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* CTA / Newsletter */}
         <section className="bg-green-700 py-20 text-white">
