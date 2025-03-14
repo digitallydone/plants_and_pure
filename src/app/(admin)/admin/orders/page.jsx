@@ -1,9 +1,6 @@
 import prisma from "@/lib/prisma";
 
 const ManageOrders = async () => {
-  // const orders = await prisma.order.findMany({
-  //   include: { products: true, user: true },
-  // });
 
   const orders = await prisma.order.findMany({
     include: {
@@ -15,7 +12,6 @@ const ManageOrders = async () => {
       },
     },
   });
-  // console.log(orders);
 
   return (
     <div>

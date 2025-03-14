@@ -39,7 +39,7 @@ export default function Products() {
       description:
         "Soothing herbal tea blend with organic chamomile, honey, and citrus notes.",
       image: "/api/placeholder/300/300",
-      price: 110.99,
+      price: 190.99,
       category: "Herbs",
       bestSeller: false,
       newArrival: true,
