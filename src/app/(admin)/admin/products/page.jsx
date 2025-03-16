@@ -52,7 +52,7 @@ const ManageProducts = () => {
 
   return (
     <div>
-      <h1 className="text-2xl mb-4">Manage Products</h1>
+      <h1 className="mb-4 text-2xl">Manage Products</h1>
       <div className="mb-4 grid grid-cols-2 gap-4">
         <input
           placeholder="Product Name"
@@ -60,17 +60,27 @@ const ManageProducts = () => {
           onChange={(e) => setName(e.target.value)}
           className="border p-2"
         />
-        <input
-          placeholder="Category"
+        <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           className="border p-2"
-        />
+        >
+          <option value="">Select Category</option>
+
+          {["Spices", "Herbs", "Essential Oils", "Gift Sets"].map(
+            (category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ),
+          )}
+        </select>
+
         <textarea
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="border p-2 col-span-2"
+          className="col-span-2 border p-2"
         />
         <input
           placeholder="Price"
@@ -102,7 +112,7 @@ const ManageProducts = () => {
         </label>
         <button
           onClick={addProduct}
-          className="bg-green-600 text-white px-4 py-2 col-span-2"
+          className="col-span-2 bg-green-600 px-4 py-2 text-white"
         >
           Add Product
         </button>

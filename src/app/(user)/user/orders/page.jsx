@@ -6,18 +6,22 @@ const OrdersPage = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch("/api/orders");
-      const data = await res.json();
-      setOrders(data);
+      try {
+        const res = await fetch("/api/orders");
+        const data = await res.json();
+        setOrders(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchOrders();
   }, []);
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl mb-4">Your Orders</h1>
+      <h1 className="mb-4 text-2xl">Your Orders</h1>
       {orders.map((order) => (
-        <div key={order.id} className="border-b mb-4 pb-2">
+        <div key={order.id} className="mb-4 border-b pb-2">
           <h2>Order ID: {order.id}</h2>
           <p>Status: {order.status}</p>
         </div>

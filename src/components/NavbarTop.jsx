@@ -23,8 +23,8 @@ export default function Navbar() {
   const menuItems = [
     { name: "Home", link: "/" },
     { name: "About us", link: "/about-us" },
-    { name: "Services", link: "/services" },
-    { name: "our Work", link: "/our-work" },
+    { name: "Products", link: "/products" },
+    { name: "Contact", link: "/contact" },
   ];
 
   const menuList = (
