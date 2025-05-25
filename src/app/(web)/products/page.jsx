@@ -1,4 +1,6 @@
+// Path: src\app\(web)\products\page.jsx
 "use client";
+import { Image } from "@nextui-org/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -145,7 +147,7 @@ export default function Products() {
     },
   ];
 
-  const [products, setProducts] = useState(demoProducts || []);
+  const [products, setProducts] = useState(demoProducts);
 
   // Filter products by category
   const filteredProducts =
@@ -261,7 +263,7 @@ export default function Products() {
                       className="overflow-hidden rounded-lg bg-white shadow-md transition hover:shadow-lg"
                     >
                       <div className="relative">
-                        <img
+                        <Image
                           src={product.image}
                           alt={product.name}
                           className="h-64 w-full object-cover"
