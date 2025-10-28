@@ -1,7 +1,9 @@
+// Path: src/app/page.js
 import Head from "next/head";
 import Link from "next/link";
 
 export default function Home() {
+
   const testimonials = [
     {
       id: 1,
@@ -21,14 +23,14 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex flex-col min-h-screen">
     
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-r from-green-800 to-green-600 text-white">
+        <section className="relative text-white bg-gradient-to-r from-green-800 to-green-600">
           <div className="absolute inset-0 bg-black opacity-30"></div>
-          <div className="container relative z-10 mx-auto px-4 py-20">
+          <div className="container relative z-10 px-4 py-20 mx-auto">
             <div className="max-w-2xl">
               <h1 className="mb-6 font-serif text-4xl md:text-5xl">
                 Welcome to Plants & Pure Limited
@@ -40,13 +42,13 @@ export default function Home() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/products"
-                  className="rounded-md bg-amber-500 px-6 py-3 text-white transition hover:bg-amber-600"
+                  className="px-6 py-3 text-white transition rounded-md bg-amber-500 hover:bg-amber-600"
                 >
                   Explore Products
                 </Link>
                 <Link
                   href="/about-us"
-                  className="rounded-md border-2 border-white bg-transparent px-6 py-3 text-white transition hover:bg-white hover:text-green-700"
+                  className="px-6 py-3 text-white transition bg-transparent border-2 border-white rounded-md hover:bg-white hover:text-green-700"
                 >
                   Our Story
                 </Link>
@@ -56,13 +58,13 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gray-50">
+          <div className="container px-4 mx-auto">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl text-gray-800">
                 Our Story
               </h2>
-              <div className="mx-auto h-1 w-20 bg-green-700"></div>
+              <div className="w-20 h-1 mx-auto bg-green-700"></div>
             </div>
 
             <div className="flex flex-col items-center gap-10 md:flex-row">
@@ -85,7 +87,7 @@ export default function Home() {
                   Learn more about us
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="ml-1 h-5 w-5"
+                    className="w-5 h-5 ml-1"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -98,11 +100,11 @@ export default function Home() {
                 </Link>
               </div>
               <div className="md:w-1/2">
-                <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg">
+                <div className="overflow-hidden rounded-lg aspect-w-16 aspect-h-9">
                   <img
                     src="/api/placeholder/600/400"
                     alt="Our production facility"
-                    className="h-full w-full object-cover"
+                    className="object-cover w-full h-full"
                   />
                 </div>
               </div>
@@ -112,21 +114,21 @@ export default function Home() {
 
         {/* Products Section */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container px-4 mx-auto">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl text-gray-800">
                 Our Products
               </h2>
-              <div className="mx-auto mb-6 h-1 w-20 bg-green-700"></div>
-              <p className="mx-auto max-w-2xl text-gray-600">
+              <div className="w-20 h-1 mx-auto mb-6 bg-green-700"></div>
+              <p className="max-w-2xl mx-auto text-gray-600">
                 Explore our carefully crafted collection of natural products
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {/* Spices */}
-              <div className="transform overflow-hidden rounded-lg bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-48 items-center justify-center bg-amber-100">
+              <div className="overflow-hidden transition transform bg-white rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center justify-center h-48 bg-amber-100">
                   <img
                     src="/api/placeholder/300/200"
                     alt="Spices collection"
@@ -148,7 +150,7 @@ export default function Home() {
                     View collection
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="ml-1 h-5 w-5"
+                      className="w-5 h-5 ml-1"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -163,8 +165,8 @@ export default function Home() {
               </div>
 
               {/* Herbs */}
-              <div className="transform overflow-hidden rounded-lg bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-48 items-center justify-center bg-green-50">
+              <div className="overflow-hidden transition transform bg-white rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center justify-center h-48 bg-green-50">
                   <img
                     src="/api/placeholder/300/200"
                     alt="Herbs collection"
@@ -186,7 +188,7 @@ export default function Home() {
                     View collection
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="ml-1 h-5 w-5"
+                      className="w-5 h-5 ml-1"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -201,8 +203,8 @@ export default function Home() {
               </div>
 
               {/* Oils */}
-              <div className="transform overflow-hidden rounded-lg bg-white shadow-md transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-48 items-center justify-center bg-yellow-50">
+              <div className="overflow-hidden transition transform bg-white rounded-lg shadow-md hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center justify-center h-48 bg-yellow-50">
                   <img
                     src="/api/placeholder/300/200"
                     alt="Essential oils collection"
@@ -224,7 +226,7 @@ export default function Home() {
                     View collection
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="ml-1 h-5 w-5"
+                      className="w-5 h-5 ml-1"
                       viewBox="0 0 20 20"
                       fill="currentColor"
                     >
@@ -242,7 +244,7 @@ export default function Home() {
             <div className="mt-12 text-center">
               <Link
                 href="/products"
-                className="inline-block rounded-md bg-green-700 px-6 py-3 text-white transition hover:bg-green-800"
+                className="inline-block px-6 py-3 text-white transition bg-green-700 rounded-md hover:bg-green-800"
               >
                 View All Products
               </Link>
@@ -251,15 +253,15 @@ export default function Home() {
         </section>
 
         {/* Quality & Sustainability Section */}
-        <section className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
+        <section className="py-16 bg-gray-50">
+          <div className="container px-4 mx-auto">
             <div className="grid grid-cols-1 gap-16 md:grid-cols-2">
               {/* Quality */}
               <div>
                 <h2 className="mb-4 font-serif text-2xl text-gray-800">
                   Quality Commitment
                 </h2>
-                <div className="mb-6 h-1 w-16 bg-green-700"></div>
+                <div className="w-16 h-1 mb-6 bg-green-700"></div>
                 <p className="mb-6 text-gray-700">
                   {`At Plants & Pure, we believe that our customers deserve
                   nothing but the best. That's why we pour our hearts into
@@ -270,7 +272,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -286,7 +288,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -302,7 +304,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -324,7 +326,7 @@ export default function Home() {
                 <h2 className="mb-4 font-serif text-2xl text-gray-800">
                   Community & Sustainability
                 </h2>
-                <div className="mb-6 h-1 w-16 bg-green-700"></div>
+                <div className="w-16 h-1 mb-6 bg-green-700"></div>
                 <p className="mb-6 text-gray-700">
                   {`We're more than just a company; we're a community. Our
                   founder's journey is a beacon of hope for women everywhere,
@@ -335,7 +337,7 @@ export default function Home() {
                 <ul className="space-y-3">
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -351,7 +353,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -367,7 +369,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <svg
-                      className="mr-2 h-6 w-6 text-green-600"
+                      className="w-6 h-6 mr-2 text-green-600"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -389,25 +391,25 @@ export default function Home() {
 
         {/* Testimonials */}
         <section className="py-16">
-          <div className="container mx-auto px-4">
+          <div className="container px-4 mx-auto">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl text-gray-800">
                 What Our Customers Say
               </h2>
-              <div className="mx-auto h-1 w-20 bg-green-700"></div>
+              <div className="w-20 h-1 mx-auto bg-green-700"></div>
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {testimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="rounded-lg bg-white p-6 shadow-md"
+                  className="p-6 bg-white rounded-lg shadow-md"
                 >
-                  <div className="mb-4 flex items-center">
-                    <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600">
+                  <div className="flex items-center mb-4">
+                    <div className="flex items-center justify-center w-12 h-12 mr-4 text-green-600 bg-green-100 rounded-full">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
+                        className="w-6 h-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -427,7 +429,7 @@ export default function Home() {
                       <div className="flex text-amber-400">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="w-4 h-4"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -435,7 +437,7 @@ export default function Home() {
                         </svg>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="w-4 h-4"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -443,7 +445,7 @@ export default function Home() {
                         </svg>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="w-4 h-4"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -451,7 +453,7 @@ export default function Home() {
                         </svg>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="w-4 h-4"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -459,7 +461,7 @@ export default function Home() {
                         </svg>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="w-4 h-4"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -476,25 +478,25 @@ export default function Home() {
         </section>
 
         {/* Blog Preview */}
-        {/* <section className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
+        {/* <section className="py-16 bg-gray-50">
+          <div className="container px-4 mx-auto">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl text-gray-800">
                 From Our Blog
               </h2>
-              <div className="mx-auto mb-6 h-1 w-20 bg-green-700"></div>
-              <p className="mx-auto max-w-2xl text-gray-600">
+              <div className="w-20 h-1 mx-auto mb-6 bg-green-700"></div>
+              <p className="max-w-2xl mx-auto text-gray-600">
                 Tips, recipes, and stories to help you make the most out of our
                 natural products
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="overflow-hidden rounded-lg bg-white shadow-md">
+              <div className="overflow-hidden bg-white rounded-lg shadow-md">
                 <img
                   src="/api/placeholder/400/250"
                   alt="Blog post"
-                  className="h-48 w-full object-cover"
+                  className="object-cover w-full h-48"
                 />
                 <div className="p-6">
                   <div className="mb-2 text-sm text-green-700">
@@ -503,7 +505,7 @@ export default function Home() {
                   <h3 className="mb-2 font-serif text-xl text-gray-800">
                     5 Ways to Use Cinnamon Beyond Baking
                   </h3>
-                  <p className="mb-4 line-clamp-3 text-gray-600">
+                  <p className="mb-4 text-gray-600 line-clamp-3">
                     Discover creative ways to incorporate this versatile spice
                     into your daily routine, from morning coffee to evening
                     skincare.
@@ -517,11 +519,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-lg bg-white shadow-md">
+              <div className="overflow-hidden bg-white rounded-lg shadow-md">
                 <img
                   src="/api/placeholder/400/250"
                   alt="Blog post"
-                  className="h-48 w-full object-cover"
+                  className="object-cover w-full h-48"
                 />
                 <div className="p-6">
                   <div className="mb-2 text-sm text-green-700">
@@ -530,7 +532,7 @@ export default function Home() {
                   <h3 className="mb-2 font-serif text-xl text-gray-800">
                     The Healing Power of Lavender Oil
                   </h3>
-                  <p className="mb-4 line-clamp-3 text-gray-600">
+                  <p className="mb-4 text-gray-600 line-clamp-3">
                     Learn about the scientifically-backed benefits of lavender
                     essential oil and simple ways to incorporate it into your
                     wellness routine.
@@ -544,11 +546,11 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-lg bg-white shadow-md">
+              <div className="overflow-hidden bg-white rounded-lg shadow-md">
                 <img
                   src="/api/placeholder/400/250"
                   alt="Blog post"
-                  className="h-48 w-full object-cover"
+                  className="object-cover w-full h-48"
                 />
                 <div className="p-6">
                   <div className="mb-2 text-sm text-green-700">
@@ -557,7 +559,7 @@ export default function Home() {
                   <h3 className="mb-2 font-serif text-xl text-gray-800">
                     Starting Your Herb Garden: A Beginners Guide
                   </h3>
-                  <p className="mb-4 line-clamp-3 text-gray-600">
+                  <p className="mb-4 text-gray-600 line-clamp-3">
                     Everything you need to know to start growing your own fresh
                     herbs at home, even if you have limited space.
                   </p>
@@ -574,7 +576,7 @@ export default function Home() {
             <div className="mt-12 text-center">
               <Link
                 href="/blog"
-                className="inline-block rounded-md border-2 border-green-700 bg-transparent px-6 py-3 text-green-700 transition hover:bg-green-700 hover:text-white"
+                className="inline-block px-6 py-3 text-green-700 transition bg-transparent border-2 border-green-700 rounded-md hover:bg-green-700 hover:text-white"
               >
                 View All Articles
               </Link>
@@ -583,23 +585,23 @@ export default function Home() {
         </section> */}
 
         {/* CTA / Newsletter */}
-        <section className="bg-green-700 py-20 text-white">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-2xl text-center">
+        <section className="py-20 text-white bg-green-700">
+          <div className="container px-4 mx-auto">
+            <div className="max-w-2xl mx-auto text-center">
               <h2 className="mb-6 font-serif text-3xl">Join Our Community</h2>
               <p className="mb-8">
                 Subscribe to our newsletter for exclusive recipes, special
                 offers, and wellness tips delivered directly to your inbox.
               </p>
-              <form className="mx-auto flex max-w-md flex-col gap-4 sm:flex-row">
+              <form className="flex flex-col max-w-md gap-4 mx-auto sm:flex-row">
                 <input
                   type="email"
                   placeholder="Your email address"
-                  className="flex-grow rounded-md px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-400"
+                  className="flex-grow px-4 py-3 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                 />
                 <button
                   type="submit"
-                  className="rounded-md bg-amber-500 px-6 py-3 text-white transition hover:bg-amber-600"
+                  className="px-6 py-3 text-white transition rounded-md bg-amber-500 hover:bg-amber-600"
                 >
                   Subscribe
                 </button>
