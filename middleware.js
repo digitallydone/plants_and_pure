@@ -1,29 +1,48 @@
-import { NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 
-export async function middleware(req) {
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!token) {
-    return NextResponse.redirect(new URL("/login", req.url));
+import { NextResponse } from "next/server"
+import { getToken } from "next-auth/jwt"
+
+export async function middleware(request) {
+  // Get the token with more flexible options
+  const token = await getToken({
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === "production"
+  })
+  
+  const isAuthenticated = !!token
+  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin")
+  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth")
+  const isDashboardRoute = request.nextUrl.pathname.startsWith("/dashboard")
+  
+  // For debugging - consider adding these to server logs
+  // console.log(`Path: ${request.nextUrl.pathname}, Auth: ${isAuthenticated}, Role: ${token?.role}`)
+  
+  // Check if we're handling a redirect after login
+  const callbackUrl = request.nextUrl.searchParams.get("callbackUrl")
+  
+  // Redirect authenticated users away from auth pages
+  if (isAuthenticated && isAuthRoute) {
+    const redirectUrl = callbackUrl || "/dashboard"
+    return NextResponse.redirect(new URL(redirectUrl, request.url))
   }
-
-  const { role } = token;
-
-  const adminRoutes = req.nextUrl.pathname.startsWith("/admin");
-  const userRoutes = req.nextUrl.pathname.startsWith("/user");
-
-  if (adminRoutes && role !== "admin") {
-    return NextResponse.redirect(new URL("/user", req.url));
+  
+  // Redirect unauthenticated users to login
+  if (!isAuthenticated && (isDashboardRoute || isAdminRoute)) {
+    return NextResponse.redirect(
+      new URL(`/auth/login?callbackUrl=${encodeURIComponent(request.nextUrl.pathname)}`, request.url),
+    )
   }
-
-  if (userRoutes && role !== "user") {
-    return NextResponse.redirect(new URL("/admin", req.url));
+  
+  // Redirect non-admin users away from admin routes
+  if (isAuthenticated && isAdminRoute && token?.role !== "admin") {
+    return NextResponse.redirect(new URL("/dashboard", request.url))
   }
-
-  return NextResponse.next();
+  
+  return NextResponse.next()
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/user/:path*"], // Apply middleware to these routes
-};
+  matcher: ["/admin/:path*", "/auth/:path*", "/dashboard/:path*"],
+}
