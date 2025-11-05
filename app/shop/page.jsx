@@ -1,7 +1,8 @@
-// Path: app\shop\page.jsx
+// Path: app/shop/page.jsx
 "use client";
 
 import { getProducts } from "@/app/actions/product";
+import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,10 +22,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ChevronDown, Filter, Search } from "lucide-react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import ProductCard from "../../components/ProductCard";
 
 export default function ShopPage() {
   const router = useRouter();
@@ -109,13 +108,13 @@ export default function ShopPage() {
   }, [category, status, search, sort, page, price]);
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[40vh] w-full bg-gradient-to-r from-slate-900 to-slate-800 flex items-center">
         <div className="absolute inset-0 opacity-30 bg-[url('/ecom-p.jpg?height=800&width=1600')] bg-cover bg-center"></div>
-        <div className="container mx-auto px-4 z-10">
+        <div className="container z-10 px-4 mx-auto">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
               Shop
             </h1>
             <p className="text-xl text-slate-200">
@@ -126,13 +125,13 @@ export default function ShopPage() {
         </div>
       </section>{" "}
       {/* Filters Section */}
-      <section className="py-8 bg-slate-50 border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="w-full md:w-auto flex items-center gap-2">
+      <section className="py-8 border-b bg-slate-50">
+        <div className="container px-4 mx-auto">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <div className="flex items-center w-full gap-2 md:w-auto">
               <Button variant="outline" className="flex items-center gap-2">
-                <Filter className="h-4 w-4" /> Filters{" "}
-                <ChevronDown className="h-4 w-4" />
+                <Filter className="w-4 h-4" /> Filters{" "}
+                <ChevronDown className="w-4 h-4" />
               </Button>
 
               <Select
@@ -173,7 +172,7 @@ export default function ShopPage() {
               </Select>
             </div>
 
-            <div className="w-full md:w-auto flex items-center gap-2">
+            <div className="flex items-center w-full gap-2 md:w-auto">
               <form
                 onSubmit={handleSearchSubmit}
                 className="relative w-full md:w-64"
@@ -205,20 +204,20 @@ export default function ShopPage() {
       </section>
       {/* Products Grid */}
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container px-4 mx-auto">
           {loading ? (
-            <div className="flex justify-center items-center h-64">
+            <div className="flex items-center justify-center h-64">
               <p>Loading products...</p>
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {products.length > 0 ? (
                   products.map((product) => (
                    <ProductCard key={product.id} product={product} />
                   ))
                 ) : (
-                  <div className="col-span-4 text-center py-12">
+                  <div className="col-span-4 py-12 text-center">
                     <p className="text-lg text-slate-500">
                       No products found. Try adjusting your filters.
                     </p>
@@ -271,102 +270,8 @@ export default function ShopPage() {
           )}
         </div>
       </section>
-      {/* Featured Categories */}
-      <section className="py-12 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">
-            Shop by Category
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md group">
-              <img
-                src="/placeholder.svg?height=400&width=600"
-                alt="Vehicle Parts"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Vehicle Parts
-                </h3>
-                <p className="text-slate-200 mb-4">
-                  High-quality parts for all types of commercial vehicles
-                </p>
-                <Link href="/shop?category=parts">
-                  <Button variant="secondary" size="sm">
-                    Browse Parts
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md group">
-              <img
-                src="/placeholder.svg?height=400&width=600"
-                alt="Accessories"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Accessories
-                </h3>
-                <p className="text-slate-200 mb-4">
-                  Enhance your vehicle with our range of accessories
-                </p>
-                <Link href="/shop?category=accessories">
-                  <Button variant="secondary" size="sm">
-                    Browse Accessories
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative h-64 rounded-lg overflow-hidden shadow-md group">
-              <img
-                src="/placeholder.svg?height=400&width=600"
-                alt="Tools & Equipment"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex flex-col justify-end p-6">
-                <h3 className="text-xl font-bold text-white mb-2">
-                  Tools & Equipment
-                </h3>
-                <p className="text-slate-200 mb-4">
-                  Professional tools for maintenance and repairs
-                </p>
-                <Link href="/shop?category=tools">
-                  <Button variant="secondary" size="sm">
-                    Browse Tools
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Newsletter */}
-      <section className="py-16 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Subscribe to our newsletter for the latest product updates, special
-            offers, and promotions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Your email address"
-              className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
-            />
-            <Button
-              variant="secondary"
-              className="bg-white text-primary hover:bg-slate-100"
-            >
-              Subscribe
-            </Button>
-          </div>
-        </div>
-      </section>
+   
+     
     </main>
   );
 }

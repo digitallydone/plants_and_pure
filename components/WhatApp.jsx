@@ -15,7 +15,7 @@ const WhatApp = () => {
         chatMessage="Hello! what can we help you?"
         phoneNumber=""
         statusMessage="Typically replies within 5mins"
-        accountName="Addfra Ltd"
+        accountName="Plant and Pure"
         chatboxClassName=""
         allowEsc
         // allowClickAway
